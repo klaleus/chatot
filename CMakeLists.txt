@@ -18,7 +18,6 @@ else()
 endif()
 
 set(CHATOT_LIBRARY_TYPE STATIC CACHE STRING "cmake library type")
-set(CHATOT_BUILD_EXAMPLE ${CHATOT_STANDALONE} CACHE BOOL "build example project")
 
 add_library(
     chatot
@@ -31,18 +30,3 @@ target_include_directories(
     PUBLIC
     "${CMAKE_CURRENT_LIST_DIR}/include"
 )
-
-if(CHATOT_BUILD_EXAMPLE)
-
-    add_executable(
-        chatot_example
-        "${CMAKE_CURRENT_LIST_DIR}/example/example.c"
-    )
-
-    target_link_libraries(
-        chatot_example
-        PRIVATE
-        chatot
-    )
-
-endif()
