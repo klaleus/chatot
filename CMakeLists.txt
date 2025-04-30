@@ -5,6 +5,7 @@ project(
     LANGUAGES C
     DESCRIPTION "minimal logging library"
     HOMEPAGE_URL "https://github.com/klaleus/chatot"
+    VERSION 1.0.0
 )
 
 set(CMAKE_MODULE_PATH "${CMAKE_MODULE_PATH}" "${CMAKE_CURRENT_LIST_DIR}/cmake")
@@ -70,5 +71,14 @@ if(CHATOT_INSTALL)
         "${CMAKE_CURRENT_BINARY_DIR}/ChatotConfig.cmake"
         DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake/chatot"
     )
+
+    set(CPACK_GENERATOR ZIP)
+    set(CPACK_PACKAGE_VENDOR Klaleus)
+    set(CPACK_VERBATIM_VARIABLES ON)
+
+    set(CPACK_SOURCE_GENERATOR ZIP)
+    set(CPACK_SOURCE_IGNORE_FILES "/build/;/\\.git/")
+
+    include(CPack)
 
 endif()
