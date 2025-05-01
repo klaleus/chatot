@@ -7,9 +7,17 @@
 
 typedef enum ChatotSeverity
 {
+    // Should print helpful debug information.
     CHATOT_SEVERITY_DEBUG,
+
+    // Should warn of potential errors.
     CHATOT_SEVERITY_WARNING,
+
+    // Should warn of realized errors.
     CHATOT_SEVERITY_ERROR,
+
+    // Should warn of errors that are not recoverable.
+    // If passed to `chatot_chatter()`, then `exit(EXIT_FAILURE)` will be called.
     CHATOT_SEVERITY_FATAL
 }
 ChatotSeverity;

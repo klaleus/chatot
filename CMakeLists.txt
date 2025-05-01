@@ -78,13 +78,4 @@ if(CHATOT_INSTALL)
         DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake/chatot"
     )
 
-    set(CPACK_GENERATOR ZIP)
-    set(CPACK_PACKAGE_VENDOR Klaleus)
-    set(CPACK_VERBATIM_VARIABLES ON)
-
-    set(CPACK_SOURCE_GENERATOR ZIP)
-    set(CPACK_SOURCE_IGNORE_FILES "/build/;/\\.git/")
-
-    include(CPack)
-
 endif()
