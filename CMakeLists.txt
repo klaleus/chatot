@@ -1,3 +1,7 @@
+################################################################################
+# Configure Chatot
+################################################################################
+
 cmake_minimum_required(VERSION 3.14)
 
 project(
@@ -19,8 +23,13 @@ else()
     set(CHATOT_STANDALONE OFF)
 endif()
 
-set(CHATOT_LIBRARY_TYPE STATIC CACHE STRING "cmake library type")
-set(CHATOT_INSTALL ${CHATOT_STANDALONE} CACHE BOOL "enable `make install`")
+include(CMakeOptions)
+include(GNUInstallDirs)
+include(CMakePackageConfigHelpers)
+
+################################################################################
+# Build Chatot
+################################################################################
 
 add_library(
     chatot
@@ -28,16 +37,16 @@ add_library(
     "${CMAKE_CURRENT_LIST_DIR}/src/chatot.c"
 )
 
-include(GNUInstallDirs)
-
 target_include_directories(
     chatot
     PUBLIC
-    $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/include>
-    $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/chatot>
+    "$<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/include>"
+    "$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/chatot>"
 )
 
-include(CMakePackageConfigHelpers)
+################################################################################
+# Install Chatot
+################################################################################
 
 configure_package_config_file(
     "${CMAKE_CURRENT_LIST_DIR}/cmake/ChatotConfig.cmake.in"
@@ -66,7 +75,6 @@ if(CHATOT_INSTALL)
 
     install(
         EXPORT ChatotTargets
-        FILE ChatotTargets.cmake
         NAMESPACE klaleus::
         DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake/chatot"
     )

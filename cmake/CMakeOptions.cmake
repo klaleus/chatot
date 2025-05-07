@@ -1,0 +1,2 @@
+set(CHATOT_LIBRARY_TYPE STATIC CACHE STRING "cmake library type")
+set(CHATOT_INSTALL ${CHATOT_STANDALONE} CACHE BOOL "enable `make install`")
